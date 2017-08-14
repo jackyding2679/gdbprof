@@ -42,3 +42,6 @@ Profiling complete with 50 samples.
 1       glDisable->None->None->None->None->None->None->None->None->None->None->None->None->None->None->None->None->None->None->None->__libc_start_main->None->None->None
 (gdb)
 ```
+
+Or, start to profile with command
+$gdb -ex 'set pagination off' -ex 'attach PID' -ex 'source /home/gdbprof/gdbprof.py' -ex 'profile begin' -ex 'quit'
