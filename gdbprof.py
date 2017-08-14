@@ -172,6 +172,7 @@ The default PERIOD is 0.5 seconds.
 #        top = GDBFunction("Top", 2)
         sleeps = 0
 
+        profile_threads = ('tp_librbd')
         threads = {}
         for i in range(0,2000):
           gdb.events.cont.connect(breaking_continue_handler)
@@ -181,6 +182,9 @@ The default PERIOD is 0.5 seconds.
           for inf in gdb.inferiors():
             inum = inf.num
             for th in inf.threads():
+              if th.name not in profile_threads:
+#                 print 'skip thread %s' %(th.name)
+                  continue
               th.switch()
               thn = th.num
 #              call_chain_frequencies[inum][thn][get_call_chain()] += 1
